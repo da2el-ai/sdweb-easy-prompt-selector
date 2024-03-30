@@ -7,23 +7,24 @@ import gradio as gr
 import modules.scripts as scripts
 from modules.scripts import AlwaysVisible, basedir
 from modules import shared
-from scripts.setup import write_filename_list
+# from scripts.setup import write_filename_list
+from scripts.tags import TagsUtil
 
-FILE_DIR = Path().absolute()
-BASE_DIR = Path(basedir())
-TAGS_DIR = BASE_DIR.joinpath('tags')
+# FILE_DIR = Path().absolute()
+# BASE_DIR = Path(basedir())
+# TAGS_DIR = BASE_DIR.joinpath('tags')
 
-def tag_files():
-    return TAGS_DIR.rglob("*.yml")
+# def tag_files():
+#     return TAGS_DIR.rglob("*.yml")
 
-def load_tags():
-    tags = {}
-    for filepath in tag_files():
-        with open(filepath, "r", encoding="utf-8") as file:
-            yml = yaml.safe_load(file)
-            tags[filepath.stem] = yml
+# def load_tags():
+#     tags = {}
+#     for filepath in tag_files():
+#         with open(filepath, "r", encoding="utf-8") as file:
+#             yml = yaml.safe_load(file)
+#             tags[filepath.stem] = yml
 
-    return tags
+#     return tags
 
 def find_tag(tags, location):
     if type(location) == str:
@@ -77,11 +78,12 @@ def replace_template(tags, prompt, seed = None):
     return prompt
 
 class Script(scripts.Script):
-    tags = {}
+    # tags = {}
 
     def __init__(self):
         super().__init__()
-        self.tags = load_tags()
+        # self.tags = load_tags()
+        TagsUtil.load_tags()
 
     def title(self):
         return "EasyPromptSelector"
@@ -97,8 +99,9 @@ class Script(scripts.Script):
         reload_button.style(size='sm')
 
         def reload():
-            self.tags = load_tags()
-            write_filename_list()
+            # self.tags = load_tags()
+            # write_filename_list()
+            TagsUtil.load_tags()
 
         reload_button.click(fn=reload)
 
@@ -119,7 +122,8 @@ class Script(scripts.Script):
 
                 self.save_prompt_to_pnginfo(p, prompt, raw_prompt_param_name)
 
-                replaced = "".join(replace_template(self.tags, all_prompts[i], seed))
+                # replaced = "".join(replace_template(self.tags, all_prompts[i], seed))
+                replaced = "".join(replace_template(TagsUtil.tags, all_prompts[i], seed))
                 all_prompts[i] = replaced
 
     def save_prompt_to_pnginfo(self, p, prompt, name):

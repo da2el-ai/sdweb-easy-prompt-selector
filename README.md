@@ -2,6 +2,15 @@
 
 [使い方(暫定)](https://blue-pen5805.fanbox.cc/posts/5306601)
 
+
+
+## Differences from the original version
+
+Enabled specifying the storage location for tag files, allowing users to choose any location.
+
+For example, storing them in Dropbox or OneDrive enables sharing across multiple environments."
+
+
 ## English Readme
 
 This extension, designed to simplify the process of inputting prompts, is currently available exclusively in Japanese. An English version may be considered for future development.
