@@ -3,13 +3,22 @@
 [使い方(暫定)](https://blue-pen5805.fanbox.cc/posts/5306601)
 
 
+## 本家との違い
+タグファイルの保存場所を任意に指定可能にしました。
+例えばDropboxやOneDriveに置くことで複数環境で共有が可能になります。
+
+【注意】
+StableDiffusion webui a1111 の API機能を使っています。
+webui の起動オプションに `--api` をつけてください。
 
 ## Differences from the original version
 
 Enabled specifying the storage location for tag files, allowing users to choose any location.
+For example, storing them in Dropbox or OneDrive enables sharing across multiple environments.
 
-For example, storing them in Dropbox or OneDrive enables sharing across multiple environments."
-
+【Note】
+We are using the API feature of StableDiffusion webui version a1111.
+Please include --api in the startup options for the webui.
 
 ## English Readme
 
